@@ -1,3 +1,4 @@
+//Code to manage different kinds of employess in a sales department
 // Employees class creation
 class Employee {
     constructor(name, age, salesTarget) {
