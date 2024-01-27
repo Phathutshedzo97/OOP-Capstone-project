@@ -3,7 +3,7 @@ class Employee {
     constructor(name, age, salesTarget) {
     this.name = name;
     this.age = age;
-    this.SalesTarget = salesTarget;
+    this.salesTarget = salesTarget;
     }
     // Calculate the end of month payout
     calculatePayout() {
@@ -77,26 +77,28 @@ class HybridEmployee extends Employee {
     const payout = employee.calculatePayout();
     let formula = '';
 
+    //Determine the formula to display based on the employee type
     if (employee.constructor.name === 'SalariedEmployee') {
         formula = `Payout = Basic Salary: $${employee.basicSalary}`;
-        if (employee.SalesTarget > employee.salesTarget) {
+        if (employee.salesTarget > employee.salesTarget) {
             formula += ` + 10% Bonus (Exceeded Sales Target)`;
         }
     } else if (employee.constructor.name === 'HourlyEmployee') {
         formula = `Payout = Hourly Rate: $${employee.hourlyRate} * Hours Logged: ${employee.hoursLogged}`;
-        if (employee.SalesTarget > employee.salesTarget) {
+        if (employee.salesTarget > employee.salesTarget) {
             formula += ` * 1.5 (Exceeded Sales Target)`;
         }
     } else if (employee.constructor.name === 'HybridEmployee') {
         formula = `Payout = Basic Salary: $${employee.basicSalary} + Hourly Rate: $${employee.hourlyRate} * Hours Logged: ${employee.hoursLogged}`;
-        if (employee.salesTarget >= employee.SalesTarget * 1.1) {
+        if (employee.salesTarget >= employee.salesTarget * 1.1) {
             formula += ` + 20% (Exceeded Sales Target by 10%)`;
         }
     }
-
+    //Display the employee name, type, and payout
     console.log(`${employee.name} (${employee.constructor.name}) - Payout: $${payout.toFixed(2)} (${formula})`);
 }
 
+//Display the payouts for each employee
 console.log('Payouts for Salaried Employees:');
 displayPayout(salariedEmployee1);
 displayPayout(salariedEmployee2);
